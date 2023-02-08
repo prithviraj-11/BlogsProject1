@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+</head>
+<body>
+<div> 
+    <h2>ALL BLOGS</h2>
+    {% if "uname" in request.session %}
+    <a href="/Logout"><h4>LOGOUT</h4></a>
+    <a href="/addBlog"><h4>ADD BLOG</h4></a>
+    {%else%}
+    <a href="/Login"><h4>LOGIN</h4></a>
+    <a href="/SignUp"><h4>SIGNUP</h4></a>
+    {%endif%}
+</div>
+    <div>
+        {%if messages%}
+            {%for msg in messages%} 
+                <h4><strong>{{msg}}</strong></h4>    
+            {%endfor%}
+        {%endif%}
+    <figure>
+        <h3>Blogs</h3>
+        {%for i in blogs%}
+        <label><b>{{i.title}}, </b></label>
+        <label><b>@{{i.author}}</b></label><br>
+        <img src="{{i.photo.url}}" alt="Story" style="width:20%"><br>
+        <caption><b>{{i.content}}</b></caption><br>
+        <label><b>Created On: {{i.creation_date}}</b></label>
+        <label><b>Published On: {{i.published_date}}</b></label>
+        <a href="/updateBlog/{{i.id}}"><h4>Update Post</h4></a>
+        <h4>--------------------------------------------------------------------------------------------------</h4>
+        {%endfor%}
+    </figure>
+</div>
+</body>
+</html>
